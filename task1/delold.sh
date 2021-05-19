@@ -28,6 +28,7 @@ then STOR=$2
 fi
 
 
+echo $(date +%F\ %T) "   запуск скрипта" >> $LOGFILE
 
 # Перебираем каталоги и удаляем устаревшие бекапы
 for i in $($FIND $STOR -type f -mtime +$TIME -print); do
@@ -35,4 +36,6 @@ for i in $($FIND $STOR -type f -mtime +$TIME -print); do
         echo $i "DELETED\n" >>$LOGFILE;
 done
 
+echo $(date +%F\ %T) "завершение работы скрипта" >> $LOGFILE
+echo "-------------------------------------------" >> $LOGFILE
 
