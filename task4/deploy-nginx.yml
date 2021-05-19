@@ -1,0 +1,17 @@
+---
+- hosts: all
+  collections:
+    - nginxinc.nginx_core
+  roles:
+    - role: nginx
+
+  tasks:
+  - name: Copy file with owner and permissions
+    ansible.builtin.copy:
+      src: /home/ubuntu/ansible/nginx/reverse-proxy.conf
+      dest: /etc/nginx/conf.d/default.conf
+
+  - name: Restart nginx
+    ansible.builtin.service:
+      name: nginx
+      state: restarted
